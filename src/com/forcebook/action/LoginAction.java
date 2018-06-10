@@ -22,14 +22,15 @@ public class LoginAction  extends ActionSupport implements SessionAware{
 		UserDAO dao = new UserDAO();
 		UserDTD dtd = dao.serch(user_name, user_pass);
 
+		this.session.put("user_name", this.user_name);
+
 		if(dtd != null){
 			this.session.put("user_id", dtd.getId());
-			this.session.put("user_name", dtd.getUser_id());
-			System.out.println("success");
+			System.out.println("LoginAction - success");
 			return "success";
 		}
 
-		System.out.println("error");
+		System.out.println("LoginAction - error");
 		return "error";
 	}
 

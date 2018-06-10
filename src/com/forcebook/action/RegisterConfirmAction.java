@@ -23,18 +23,15 @@ public class RegisterConfirmAction extends ActionSupport implements SessionAware
 		this.sessionMap.put("user_pass", this.user_pass);
 		this.sessionMap.put("user_pass_confirm", this.user_pass_confirm);
 
-		String userPass = this.user_pass;
-		String userPassConfirm = this.user_pass_confirm;
-
-		System.out.println(userPass +","+ userPassConfirm);
-//		if(userPass == userPassConfirm){
-		if(userPass != userPassConfirm){
-			System.out.println("RegisterConfirmAction - error");
-			return "error";
+		boolean bool = this.user_pass == this.user_pass_confirm;
+		System.out.println(bool);
+		if(bool){
+			System.out.println("RegisterConfirmAction - success");
+			return "success";
 		}
 
-		System.out.println("RegisterConfirmAction - success");
-		return "success";
+		System.out.println("RegisterConfirmAction - error");
+		return "error";
 	}
 
 	@Override

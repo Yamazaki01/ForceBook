@@ -10,13 +10,13 @@
         <title>login</title>
     </head>
     <body>
-
+		<h2>ログイン</h2>
         <form action="login" method="post">
            	<table>
             <tr>
 				<td align="right" nowrap>ユーザ：</td>
             	<td valign="top" width="200">
-            		<input type="text" id="user_name" name="user_name" width="200" />
+            		<input type="text" id="user_name" name="user_name" value="<s:property value="#session.user_name" />" width="200" />
             	</td>
             </tr>
             <tr>

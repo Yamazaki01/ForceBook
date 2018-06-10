@@ -8,7 +8,7 @@
 <title>トップページ</title>
 </head>
 <body>
-
+ようこそ、<s:property value="#session.user_name" />さん
 
 
 
