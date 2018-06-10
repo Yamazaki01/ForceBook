@@ -5,10 +5,14 @@
 <struts>
     <!-- アクションのパッケージ定義 -->
     <package name="default" extends="struts-default">
-        <!-- Hello worldのサンプルアクション -->
+        <!-- アクション一覧 -->
         <action name="login" class="com.forcebook.action.LoginAction" method="execute">
             <result name="success">/view/top.jsp</result>
 			<result name="error">/view/login.jsp</result>
+        </action>
+
+        <action name="logout" class="com.forcebook.action.LogoutAction" method="execute">
+        	<result name="success">/view/login.jsp</result>
         </action>
 
         <action name="register" class="com.forcebook.action.TransitionAction" method="execute">

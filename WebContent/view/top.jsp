@@ -8,9 +8,15 @@
 <title>トップページ</title>
 </head>
 <body>
-ようこそ、<s:property value="#session.user_name" />さん
+	<div>
+		<form action="logout" method="GET">
+			<button type="submit" value="ログアウト" >ログアウト</button>
+		</form>
+	</div>
 
-
+	<br/>
+	<br/>
+	<div>ようこそ、<s:property value="#session.user_name" />さん</div>
 
 </body>
 </html>

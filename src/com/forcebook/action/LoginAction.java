@@ -20,7 +20,7 @@ public class LoginAction  extends ActionSupport implements SessionAware{
 	public String execute() throws Exception {
 		System.out.println("LoginAction - execute");
 		UserDAO dao = new UserDAO();
-		UserDTD dtd = dao.serch(user_name, user_pass);
+		UserDTD dtd = dao.user_serch(user_name, user_pass);
 
 		this.session.put("user_name", this.user_name);
 
