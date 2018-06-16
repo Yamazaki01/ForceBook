@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!-- Struts2のタグライブラリを使用可能にする -->
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<jsp:forward page="/view/login.jsp" />
+<jsp:forward page="/view/jsp/login.jsp" />
 <!-- タイプ宣言はHTML5のものを使用する -->
 <!DOCTYPE html>
 <html>

@@ -5,7 +5,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.forcebook.dao.UserDAO;
-import com.forcebook.dtd.UserDTD;
+import com.forcebook.dto.UserDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction  extends ActionSupport implements SessionAware{
@@ -14,18 +14,18 @@ public class LoginAction  extends ActionSupport implements SessionAware{
 
 	private String user_name;
 	private String user_pass;
-	private Map<String, Object> session;
+	private Map<String, Object> sessionMap;
 
 
 	public String execute() throws Exception {
 		System.out.println("LoginAction - execute");
 		UserDAO dao = new UserDAO();
-		UserDTD dtd = dao.user_serch(user_name, user_pass);
+		UserDTO dto = dao.user_serch(user_name, user_pass);
 
-		this.session.put("user_name", this.user_name);
+		this.sessionMap.put("user_name", this.user_name);
 
-		if(dtd != null){
-			this.session.put("user_id", dtd.getId());
+		if(dto != null){
+			this.sessionMap.put("user_id", dto.getId());
 			System.out.println("LoginAction - success");
 			return "success";
 		}
@@ -36,7 +36,7 @@ public class LoginAction  extends ActionSupport implements SessionAware{
 
 	@Override
 	public void setSession(Map<String, Object> session) {
-		this.session = session;
+		this.sessionMap = session;
 	}
 
 

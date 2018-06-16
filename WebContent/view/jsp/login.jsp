@@ -6,10 +6,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<%@ include file="../html/head.html" %>
         <title>login</title>
     </head>
     <body>
+		<%@ include file="../html/header.jsp" %>
+		<br/>
 		<h2>ログイン</h2>
         <form action="login" method="post">
            	<table>
@@ -34,11 +36,14 @@
       		</table>
         </form>
 
+
 		<br/>
 		<br/>
         <form action="register" method="get">
         	<div><button type="submit" value="新規作成" >新規作成</button></div>
         </form>
+		 </div>
+		<%@ include file="../html/footer.html" %>
 
     </body>
 </html>

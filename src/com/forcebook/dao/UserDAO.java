@@ -9,15 +9,15 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.forcebook.dtd.UserDTD;
+import com.forcebook.dto.UserDTO;
 
 
 
 public class UserDAO {
-	public UserDTD user_serch(String user_name, String user_pass)
+	public UserDTO user_serch(String user_name, String user_pass)
 	{
 
-		UserDTD dtd =null;
+		UserDTO dto =null;
 		Connection con = null;
 		PreparedStatement st = null;
 		try
@@ -39,23 +39,23 @@ public class UserDAO {
 			ResultSet rs=st.executeQuery();
 
 			while(rs.next()){
-				dtd = new UserDTD();
-				dtd.setId(rs.getInt("id"));
-				dtd.setUser_id(rs.getString("user_id"));
+				dto = new UserDTO();
+				dto.setId(rs.getInt("id"));
+				dto.setUser_id(rs.getString("user_id"));
 			}
 
-			return dtd;
+			return dto;
 		}
 		catch(SQLException e)
 		{
             /*エラーメッセージ出力*/
             System.out.println( "Connection Failed. : " + e.toString() );
-            return dtd;
+            return dto;
 		}
 		catch(Exception e)
 		{
 			System.out.println("呼び出し失敗");
-			return dtd;
+			return dto;
 		}
 		finally
 		{
