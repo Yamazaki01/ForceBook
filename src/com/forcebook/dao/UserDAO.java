@@ -41,7 +41,7 @@ public class UserDAO {
 			while(rs.next()){
 				dto = new UserDTO();
 				dto.setId(rs.getInt("id"));
-				dto.setUser_id(rs.getString("user_id"));
+				dto.setUser_name(rs.getString("user_id"));
 			}
 
 			return dto;

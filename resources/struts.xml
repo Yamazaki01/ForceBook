@@ -8,7 +8,20 @@
  	<constant name="struts.devMode" value="true" />
 	<constant name="struts.multipart.maxSize" value="-1"/>
 	<!-- アクションのパッケージ定義 -->
-	<package name="default" extends="struts-default">
+	<package name="default" namespace="/" extends="struts-default,json-default">
+
+
+		<!-- jsonレスポンス -->
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult"/>
+		</result-types>
+        <action name="hello" class="com.forcebook.action.JsonAction">
+        	<result name="success" type="json">
+			<param name="root">msg</param>
+		</result>
+        </action>
+
+
 		<!-- アクション一覧 -->
 		<action name="login" class="com.forcebook.action.LoginAction"
 			method="execute">
@@ -50,12 +63,22 @@
 			<result name="success">/view/jsp/top.jsp</result>
 		</action>
 
-		<action name="search" class="com.forcebook.action.FindUserAction"
+		<action name="search" class="com.forcebook.action.FindAllUserAction"
 			method="execute">
 			<result name="success">/view/jsp/search.jsp</result>
+			<result name="json" type="json">
+				<param name="root">msg</param>
+			</result>
 		</action>
 
-		<action name="*" class="com.forcebook.action.TransitionAction"
+
+
+		<action name="profile" class="com.forcebook.action.FindUserAction"
+			method="execute">
+			<result name="success">/view/jsp/profile.jsp</result>
+		</action>
+
+		<action name="*/*" class="com.forcebook.action.TransitionAction"
 			method="execute">
 			<result name="success">/view/jsp/error.jsp</result>
 		</action>

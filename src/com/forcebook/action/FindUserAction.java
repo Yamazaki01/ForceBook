@@ -1,7 +1,8 @@
 package com.forcebook.action;
 
-import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Resource;
 
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -11,37 +12,41 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class FindUserAction extends ActionSupport implements SessionAware {
 
+	private int profileId;
+	private UserDTO dto=null;
 	private Map<String, Object> sessionMap;
-	private String targetText;
+
+	@Resource
+	protected Map requestScope;
+
 
 	public String execute(){
-		System.out.println("FindUserAction - execute");
 
+		String url=(String)requestScope.get("javax.servlet.forward.servlet_uri");
 
-		if(this.targetText != null){
+//		String url = RequestUtil.getRequest().getRequestURI();
+		FindUserDAO dao = new FindUserDAO();
+		dto = dao.findUser(profileId);
 
-			int id = (int)sessionMap.get("id");
-			FindUserDAO dao = new FindUserDAO();
-			List<UserDTO> arrayDTO = dao.findUser(targetText,id);
-
-			if(arrayDTO == null){
-				System.out.println("LoginAction - error");
-				return "error";
-			}
+		if(dto != null){
+			return "success";
 		}
-
-		System.out.println("LoginAction - success");
-		return "success";
+		return "error";
 	}
 
 
-
-	public String getTargetText() {
-		return targetText;
+	public int getProfileId() {
+		return profileId;
+	}
+	public void setProfileId(int profileId) {
+		this.profileId = profileId;
 	}
 
-	public void setTargetText(String targetText) {
-		this.targetText = targetText;
+	public UserDTO getDto() {
+		return dto;
+	}
+	public void setDto(UserDTO dto) {
+		this.dto = dto;
 	}
 
 	@Override

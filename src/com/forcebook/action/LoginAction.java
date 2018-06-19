@@ -25,7 +25,7 @@ public class LoginAction  extends ActionSupport implements SessionAware{
 		this.sessionMap.put("user_name", this.user_name);
 
 		if(dto != null){
-			this.sessionMap.put("user_id", dto.getId());
+			this.sessionMap.put("id", dto.getId());
 			System.out.println("LoginAction - success");
 			return "success";
 		}
