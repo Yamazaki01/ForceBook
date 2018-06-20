@@ -5,21 +5,47 @@
 <struts>
 
 
- 	<constant name="struts.devMode" value="true" />
-	<constant name="struts.multipart.maxSize" value="-1"/>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.multipart.maxSize" value="-1" />
 	<!-- アクションのパッケージ定義 -->
-	<package name="default" namespace="/" extends="struts-default,json-default">
-
+	<package name="default" namespace="/"
+		extends="struts-default, json-default">
 
 		<!-- jsonレスポンス -->
 		<result-types>
-			<result-type name="json" class="org.apache.struts2.json.JSONResult"/>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
 		</result-types>
-        <action name="hello" class="com.forcebook.action.JsonAction">
-        	<result name="success" type="json">
-			<param name="root">msg</param>
-		</result>
-        </action>
+		<interceptors>
+			<interceptor name="json"
+				class="org.apache.struts2.json.JSONInterceptor" />
+			<interceptor-stack name="ajaxDefaultStack">
+				<interceptor-ref name="json">
+					<param name="enableSMD">true</param>
+				</interceptor-ref>
+			</interceptor-stack>
+			<interceptor name="interceptor" class="com.forcebook.interceptor" />
+			<interceptor-stack name="Default">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="interceptor" />
+				<interceptor-ref name="ajaxDefaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="Default" />
+
+		<!-- 以下アクション一覧 -->
+		<action name="search" class="com.forcebook.action.FindAllUserAction"
+			method="execute">
+			<result name="success">/view/jsp/search.jsp</result>
+			<result name="json" type="json">
+				<param name="root">msg</param>
+			</result>
+		</action>
+
+		<action name="hello" class="com.forcebook.action.JsonAction">
+			<result name="success" type="json">
+				<param name="root">msg</param>
+			</result>
+		</action>
 
 
 		<!-- アクション一覧 -->
@@ -63,16 +89,6 @@
 			<result name="success">/view/jsp/top.jsp</result>
 		</action>
 
-		<action name="search" class="com.forcebook.action.FindAllUserAction"
-			method="execute">
-			<result name="success">/view/jsp/search.jsp</result>
-			<result name="json" type="json">
-				<param name="root">msg</param>
-			</result>
-		</action>
-
-
-
 		<action name="profile" class="com.forcebook.action.FindUserAction"
 			method="execute">
 			<result name="success">/view/jsp/profile.jsp</result>
@@ -83,6 +99,14 @@
 			<result name="success">/view/jsp/error.jsp</result>
 		</action>
 
+
+
+
+
+
 	</package>
 
+	<!-- <package name="default" namespace="/" extends="struts-default,json-default">
+		</package> -->
 </struts>
+

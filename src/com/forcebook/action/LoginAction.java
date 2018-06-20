@@ -10,8 +10,6 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction  extends ActionSupport implements SessionAware{
 
-//	private Logger logger = LogManager.getLogger(LoginAction.class);
-
 	private String user_name;
 	private String user_pass;
 	private Map<String, Object> sessionMap;
@@ -26,6 +24,8 @@ public class LoginAction  extends ActionSupport implements SessionAware{
 
 		if(dto != null){
 			this.sessionMap.put("id", dto.getId());
+			int temp_str = (int)sessionMap.get("id");
+
 			System.out.println("LoginAction - success");
 			return "success";
 		}

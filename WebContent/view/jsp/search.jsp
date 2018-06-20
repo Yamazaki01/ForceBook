@@ -21,12 +21,11 @@
             var url = $("#url_post").val();
 
                 var JSONdata = {
-                    value1: $("#value1").val(),
-                    value2: $("#value2").val()
+                    targetText: $("#value1").val()
                 };
 
             $.ajax({
-                type : 'post',
+                type : 'POST',
                 url : url,
                 data : JSON.stringify(JSONdata),
                 contentType: 'application/JSON',
@@ -115,7 +114,7 @@ $("#update").click(function() {
 <br/>
 
     <h1>HTMLファイルからPOSTでJSONデータを送信する</h1>
-    <p>URL: <input type="text" id="url_post" name="url" size="100" value="http://testurl/"></p>
+    <p>URL: <input type="text" id="url_post" name="url" size="100" value="http://localhost:8080/ForceBook/search"></p>
     <p>value1: <input type="text" id="value1" size="30" value="値1"></p>
     <p>value2: <input type="text" id="value2" size="30" value="値2"></p>
     <p><button id="button" type="button">submit</button></p>
